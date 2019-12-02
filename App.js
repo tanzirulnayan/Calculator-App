@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, StatusBar, Button} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Button} from 'react-native';
 
 export default class App extends Component {
   constructor() {
@@ -7,6 +7,27 @@ export default class App extends Component {
     this.state = {};
   }
   render() {
+    let rows = [];
+    let nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0 , 0, '=']];
+    for (let i = 0; i < 4; i++) {
+      let row = [];
+      for (let j = 0; j < 3; j++) {
+        row.push(
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>{nums[i][j]}</Text>
+          </TouchableOpacity>,
+        );
+      }
+      rows.push(<View style={styles.row}>{row}</View>);
+    }
+
+    let operations = ['+', '-', '*', '/'];
+    let ops = [];
+    for (let i = 0; i < 4; i++) {
+      ops.push(<TouchableOpacity style={styles.button}>
+        <Text style={[styles.buttonText, styles.whiteText]}>{operations[i]}</Text>
+      </TouchableOpacity>,);
+    }
     return(
         <View style={styles.container}>
           <View style={styles.result}>
@@ -17,32 +38,10 @@ export default class App extends Component {
           </View>
           <View style={styles.buttons}>
             <View style={styles.numbers}>
-              <View style={styles.row}>
-                <Button title="0"/>
-                <Button title="0"/>
-                <Button title="0"/>
-              </View>
-              <View style={styles.row}>
-                <Button title="0"/>
-                <Button title="0"/>
-                <Button title="0"/>
-              </View>
-              <View style={styles.row}>
-                <Button title="0"/>
-                <Button title="0"/>
-                <Button title="0"/>
-              </View>
-              <View style={styles.row}>
-                <Button title="0"/>
-                <Button title="0"/>
-                <Button title="0"/>
-              </View>
+              {rows}
             </View>
             <View style={styles.operations}>
-              <Button title='+' />
-              <Button title='+' />
-              <Button title='+' />
-              <Button title='+' />
+              {ops}
             </View>
           </View>
         </View>
@@ -77,6 +76,18 @@ const styles = StyleSheet.create({
   buttons: {
     flexGrow: 7,
     flexDirection: 'row',
+  },
+  button: {
+    flex: 1,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontSize: 30,
+  },
+  whiteText: {
+    color: 'white',
   },
   numbers: {
     flex: 3,
