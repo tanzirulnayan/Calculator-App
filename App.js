@@ -8,7 +8,7 @@ export default class App extends Component {
   }
   render() {
     let rows = [];
-    let nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0 , 0, '=']];
+    let nums = [[7, 8, 9], [4, 5, 6], [1, 2, 3], ['.', 0, '=']];
     for (let i = 0; i < 4; i++) {
       let row = [];
       for (let j = 0; j < 3; j++) {
@@ -21,30 +21,31 @@ export default class App extends Component {
       rows.push(<View style={styles.row}>{row}</View>);
     }
 
-    let operations = ['+', '-', '*', '/'];
+    let operations = ['/', '*', '-', '+'];
     let ops = [];
     for (let i = 0; i < 4; i++) {
-      ops.push(<TouchableOpacity style={styles.button}>
-        <Text style={[styles.buttonText, styles.whiteText]}>{operations[i]}</Text>
-      </TouchableOpacity>,);
+      ops.push(
+        <TouchableOpacity style={styles.button}>
+          <Text style={[styles.buttonText, styles.whiteText]}>
+            {operations[i]}
+          </Text>
+        </TouchableOpacity>,
+      );
     }
-    return(
-        <View style={styles.container}>
-          <View style={styles.result}>
-            <Text style={styles.resultText}>11*11</Text>
-          </View>
-          <View style={styles.calculation}>
-            <Text style={styles.calculationText}>121</Text>
-          </View>
-          <View style={styles.buttons}>
-            <View style={styles.numbers}>
-              {rows}
-            </View>
-            <View style={styles.operations}>
-              {ops}
-            </View>
-          </View>
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.result}>
+          <Text style={styles.resultText}>11*11</Text>
         </View>
+        <View style={styles.calculation}>
+          <Text style={styles.calculationText}>121</Text>
+        </View>
+        <View style={styles.buttons}>
+          <View style={styles.numbers}>{rows}</View>
+          <View style={styles.operations}>{ops}</View>
+        </View>
+      </View>
     );
   }
 }
