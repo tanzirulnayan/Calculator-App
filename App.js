@@ -9,7 +9,8 @@ export default class App extends Component {
     };
   }
 
-  calculateResult() {
+  calculateResult(text) {
+    const resultText = this.state.resultText;
 
   }
 
@@ -21,6 +22,18 @@ export default class App extends Component {
     this.setState({
       resultText: this.state.resultText + text,
     });
+  }
+
+  operate(operation) {
+    switch (operation) {
+      case 'D':
+        let text = this.state.resultText.split('');
+        text.pop();
+        text.join('');
+        this.setState({
+          resultText: text.join(''),
+        })
+    }
   }
 
   render() {
@@ -40,11 +53,11 @@ export default class App extends Component {
       rows.push(<View style={styles.row}>{row}</View>);
     }
 
-    let operations = ['/', '*', '-', '+'];
+    let operations = ['D', '/', '*', '-', '+'];
     let ops = [];
     for (let i = 0; i < 4; i++) {
       ops.push(
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => this.operate(operations[i])}>
           <Text style={[styles.buttonText, styles.whiteText]}>
             {operations[i]}
           </Text>
