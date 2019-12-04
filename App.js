@@ -7,14 +7,15 @@ export default class App extends Component {
     this.state = {
       resultText: '',
     };
+    this.operations = ['D', '/', '*', '-', '+'];
   }
 
   calculateResult() {
     const text = this.state.resultText;
+    // if ()
   }
 
   buttonPressed(text) {
-    // console.warn(text);
     if (text === '=') {
       return this.calculateResult();
     }
@@ -37,6 +38,10 @@ export default class App extends Component {
       case '-':
       case '*':
       case '/':
+        const lastChar = this.state.resultText.split('').pop();
+        if (this.operations.indexOf(lastChar) > 0) {
+          return;
+        }
         if (this.state.text === '') {
           return;
         } else {
@@ -64,15 +69,14 @@ export default class App extends Component {
       rows.push(<View style={styles.row}>{row}</View>);
     }
 
-    let operations = ['D', '/', '*', '-', '+'];
     let ops = [];
     for (let i = 0; i < 5; i++) {
       ops.push(
         <TouchableOpacity
           style={styles.button}
-          onPress={() => this.operate(operations[i])}>
+          onPress={() => this.operate(this.operations[i])}>
           <Text style={[styles.buttonText, styles.whiteText]}>
-            {operations[i]}
+            {this.operations[i]}
           </Text>
         </TouchableOpacity>,
       );
