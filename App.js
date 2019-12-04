@@ -12,7 +12,9 @@ export default class App extends Component {
 
   calculateResult() {
     const text = this.state.resultText;
-    // if ()
+    this.setState({
+      calculationText: eval(text),
+    });
   }
 
   buttonPressed(text) {
@@ -49,6 +51,7 @@ export default class App extends Component {
             resultText: this.state.resultText + operation,
           });
         }
+        break;
     }
   }
 
@@ -88,7 +91,7 @@ export default class App extends Component {
           <Text style={styles.resultText}>{this.state.resultText}</Text>
         </View>
         <View style={styles.calculation}>
-          <Text style={styles.calculationText}>121</Text>
+          <Text style={styles.calculationText}>{this.state.calculationText}</Text>
         </View>
         <View style={styles.buttons}>
           <View style={styles.numbers}>{rows}</View>
