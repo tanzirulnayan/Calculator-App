@@ -6,6 +6,11 @@ export default class App extends Component {
     super();
     this.state = {};
   }
+
+  buttonPressed(text) {
+    console.warn(text);
+  }
+
   render() {
     let rows = [];
     let nums = [[7, 8, 9], [4, 5, 6], [1, 2, 3], ['.', 0, '=']];
@@ -13,7 +18,7 @@ export default class App extends Component {
       let row = [];
       for (let j = 0; j < 3; j++) {
         row.push(
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={() => this.buttonPressed(nums[i][j])} style={styles.button}>
             <Text style={styles.buttonText}>{nums[i][j]}</Text>
           </TouchableOpacity>,
         );
@@ -56,7 +61,7 @@ const styles = StyleSheet.create({
   },
   result: {
     flex: 2,
-    backgroundColor: 'red',
+    backgroundColor: '#303f9f',
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
   },
   calculation: {
     flex: 1,
-    backgroundColor: 'green',
+    backgroundColor: '#283593',
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
@@ -92,13 +97,13 @@ const styles = StyleSheet.create({
   },
   numbers: {
     flex: 3,
-    backgroundColor: 'yellow',
+    backgroundColor: '#eceff1',
   },
   operations: {
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'stretch',
-    backgroundColor: 'black',
+    backgroundColor: '#37474f',
   },
   row: {
     flexDirection: 'row',
