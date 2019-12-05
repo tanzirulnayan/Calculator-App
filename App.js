@@ -7,7 +7,7 @@ export default class App extends Component {
     this.state = {
       resultText: '',
     };
-    this.operations = ['D', '/', '*', '-', '+'];
+    this.operations = ['DEL', 'AC', '/', '*', '-', '+'];
   }
 
   validate() {
@@ -40,12 +40,18 @@ export default class App extends Component {
 
   operate(operation) {
     switch (operation) {
-      case 'D':
+      case 'DEL':
         let text = this.state.resultText.split('');
         text.pop();
         text.join('');
         this.setState({
           resultText: text.join(''),
+        });
+        break;
+      case 'AC':
+        this.setState({
+          resultText: '',
+          calculationText: '',
         });
         break;
       case '+':
@@ -85,7 +91,7 @@ export default class App extends Component {
     }
 
     let ops = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       ops.push(
         <TouchableOpacity
           style={styles.button}
@@ -120,23 +126,23 @@ const styles = StyleSheet.create({
   },
   result: {
     flex: 2,
-    backgroundColor: '#303f9f',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
   resultText: {
     fontSize: 30,
-    color: 'white',
+    color: '#263238',
   },
   calculation: {
     flex: 1,
-    backgroundColor: '#283593',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
   calculationText: {
     fontSize: 24,
-    color: 'white',
+    color: '#263238',
   },
   buttons: {
     flexGrow: 7,
