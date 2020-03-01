@@ -65,7 +65,7 @@ export default class App extends Component {
         if (this.state.text === '') {
           return;
         } else {
-          this.setState({
+          this.setState({ 
             resultText: this.state.resultText + operation,
           });
         }
